@@ -1,0 +1,35 @@
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h4 class="mb-0">{{editingPostId ? 'Edit Post' : 'New Post'}}</h4>
+    </div>
+    <div class="card-body">
+        <form #postForm="ngForm" (ngSubmit)="submitPost()">
+         <div class="form-group">
+            <label for="title">Title*</label>
+            <input type="text" id="title" class="form-control" ngModel name="title" required>
+         </div>
+         <div class="form-group">
+            <label for="body">Body*</label>
+            <textarea rows="4" id="body" class="form-control" ngModel name="body" required></textarea>
+         </div>
+         <div class="form-group">
+            <label for="userId">User Id*</label>
+            <select id="userId" class="form-control" ngModel name="userId" required>
+                <option value="" disabled>Select user</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+         </div>
+         <div class="d-flex justify-content-between">
+         <button type="submit" mat-raised-button color="primary" [disabled]="postForm.invalid">
+            {{editingPostId ? 'Update Post' : 'Add Post'}}
+         </button>
+         <button type="button" mat-button *ngIf="editingPostId" (click)="cancelEdit()">Cancel</button>
+         </div>
+        </form>
+    </div>
+</div>

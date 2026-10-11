@@ -1,0 +1,24 @@
+<nav class="navbar navbar-dark bg-primary mb-4">
+    <span class="navbar-brand mb-0 h1">Post Dashboard</span>
+    <span class="badge badge-light">{{posts.length}} posts</span>
+</nav>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mb-4">
+            <app-post-form
+            (postUpdated)="onPostUpdated($event)"
+            (postCreated)="onPostCreated($event)"
+            ></app-post-form>
+        </div>
+    </div>
+    <p class="text-center text-muted" *ngIf="isLoading">Loading posts...</p>
+    <p class="text-center text-muted" *ngIf="!isLoading && !posts.length">No posts yet. Add your first one above.</p>
+    <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let post of posts">
+            <app-post-card
+            [post]="post"
+            (postDeleted)="onPostDeleted($event)"
+            ></app-post-card>
+        </div>
+    </div>
+</div>
